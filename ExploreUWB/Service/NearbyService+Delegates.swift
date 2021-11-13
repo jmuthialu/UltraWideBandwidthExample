@@ -1,0 +1,16 @@
+//
+//  NearbyService+Delegates.swift
+//  ExploreUWB
+//
+//  Created by Jay Muthialu on 11/12/21.
+//
+
+import Foundation
+import NearbyInteraction
+
+extension NearbyService: NISessionDelegate {
+    
+    func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
+        Logger.log(tag: .nearby, message: "didUpdate")
+    }
+}
