@@ -33,13 +33,16 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="bdY-bO-Cuo">
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="Rcj-6j-9aI">
+                        <barButtonItem key="rightBarButtonItem" title="Stop" id="Rcj-6j-9aI">
                             <connections>
-                                <action selector="cancelTapped:" destination="BYZ-38-t0r" id="kNA-z2-PkY"/>
+                                <action selector="startStopTapped:" destination="BYZ-38-t0r" id="3dm-lm-6DM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="startStopButton" destination="Rcj-6j-9aI" id="Khl-xz-VVA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

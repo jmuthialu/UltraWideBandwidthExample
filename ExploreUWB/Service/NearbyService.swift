@@ -18,6 +18,7 @@ class NearbyService: NSObject {
     var nearbySession: NISession?
     var peerConnectionManager: PeerConnectionManager?
     
+    @Published var isConnected = false
     var cancellables = Set<AnyCancellable>()
     
     struct Constants {
@@ -45,7 +46,8 @@ class NearbyService: NSObject {
         Logger.log(tag: .nearby, message: "Stopping services...")
         nearbySession?.invalidate()
         peerConnectionManager?.invalidate()
-        nearbySession = nil 
+        nearbySession = nil
+        isConnected = false
     }
     
     func bindPublishers() {
@@ -66,6 +68,7 @@ class NearbyService: NSObject {
             self?.peerConnectionManager?.connectedRemoteDiscoveryToken = peerToken
             let config = NINearbyPeerConfiguration(peerToken: peerToken)
             self?.nearbySession?.run(config)
+            self?.isConnected = true
         }.store(in: &cancellables)
         
         

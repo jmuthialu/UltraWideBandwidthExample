@@ -10,6 +10,7 @@ import NearbyInteraction
 
 extension NearbyService: NISessionDelegate {
     
+    // Called whenever remote peer has any updates in terms of distance
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
         Logger.log(tag: .nearby, message: "didUpdate nearbyObjects: \(String(describing: nearbyObjects.first?.distance))")
     }

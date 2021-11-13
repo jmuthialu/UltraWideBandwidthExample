@@ -27,7 +27,7 @@ extension PeerConnectionManager: MCSessionDelegate {
         }
     }
     
-    /// Remote peers sends discovery token as response from local peer sending its token.
+    /// Called when remote peer sends discovery token as response from local peer sending its token.
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         if connectedRemotePeerID == peerID {
             Logger.log(tag: .nearby, message: "session.didReceiveData from connectedPeer: \(peerID)")
@@ -77,7 +77,7 @@ extension PeerConnectionManager: MCNearbyServiceBrowserDelegate {
                 let peerSession = peerSession else { return }
         Logger.log(tag: .nearby, message: "browser:foundPeer: identityValue: \(identityValue) - identityString: \(identityString)")
 
-        if identityValue == identityString {
+        if identityValue == self.identityString {
             browser.invitePeer(peerID, to: peerSession, withContext: nil, timeout: 10)
         }
     }
