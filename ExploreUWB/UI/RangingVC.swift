@@ -21,6 +21,10 @@ class RangingVC: UIViewController {
     func startup() {
         nearbyService.start()
     }
-
+    
+    @IBAction func cancelTapped(_ sender: Any) {
+        nearbyService.stop()
+    }
+    
 }
 

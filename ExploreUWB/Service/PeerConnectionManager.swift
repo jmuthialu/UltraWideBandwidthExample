@@ -85,6 +85,9 @@ class PeerConnectionManager: NSObject {
         Logger.log(tag: .nearby, message: "Invalidating peerConnectionManager...")
         suspend()
         peerSession?.disconnect()
+        connectedRemotePeerID = nil 
+        connectedRemoteDiscoveryToken = nil
+        peerSession = nil 
     }
     
     func sendData(data: Data?, mode: MCSessionSendDataMode) {

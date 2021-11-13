@@ -27,10 +27,10 @@ class NearbyService: NSObject {
     
     private override init() {
         super.init()
-        bindPublishers()
     }
     
     func start() {
+        Logger.log(tag: .nearby, message: "Starting services...")
         nearbySession = NISession()
         nearbySession?.delegate = self
         
@@ -38,6 +38,14 @@ class NearbyService: NSObject {
                                                       serviceString: Constants.serviceString,
                                                       identityString: Constants.identityString)
         peerConnectionManager?.start()
+        bindPublishers()
+    }
+    
+    func stop() {
+        Logger.log(tag: .nearby, message: "Stopping services...")
+        nearbySession?.invalidate()
+        peerConnectionManager?.invalidate()
+        nearbySession = nil 
     }
     
     func bindPublishers() {
@@ -45,12 +53,16 @@ class NearbyService: NSObject {
         // Send token after establishing connection
         peerConnectionManager?.$connectionStatus.sink { [weak self] status in
             guard let status = status, status == .connected else { return }
+            
+            Logger.log(tag: .nearby, message: "Subcriber for connectionStatus...")
             self?.shareTokenToRemotePeers()
         }.store(in: &cancellables)
         
         // Run nearySession after receiving token from remote peer
         peerConnectionManager?.remotePeerSentToken.sink { [weak self] data in
             guard let peerToken = data.decode() else { return }
+            
+            Logger.log(tag: .nearby, message: "Subcriber for remotePeerSentToken...")
             self?.peerConnectionManager?.connectedRemoteDiscoveryToken = peerToken
             let config = NINearbyPeerConfiguration(peerToken: peerToken)
             self?.nearbySession?.run(config)
@@ -61,6 +73,8 @@ class NearbyService: NSObject {
     
     func shareTokenToRemotePeers() {
         guard let myToken = nearbySession?.discoveryToken else { return }
+        
+        Logger.log(tag: .nearby, message: "shareTokenToRemotePeers...")
         let encodedToken = myToken.encode()
         peerConnectionManager?.sendData(data: encodedToken, mode: .reliable)
     }

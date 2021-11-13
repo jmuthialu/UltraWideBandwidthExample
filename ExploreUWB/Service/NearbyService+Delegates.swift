@@ -11,6 +11,10 @@ import NearbyInteraction
 extension NearbyService: NISessionDelegate {
     
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        Logger.log(tag: .nearby, message: "didUpdate")
+        Logger.log(tag: .nearby, message: "didUpdate nearbyObjects: \(String(describing: nearbyObjects.first?.distance))")
+    }
+    
+    func session(_ session: NISession, didRemove nearbyObjects: [NINearbyObject], reason: NINearbyObject.RemovalReason) {
+        stop()
     }
 }

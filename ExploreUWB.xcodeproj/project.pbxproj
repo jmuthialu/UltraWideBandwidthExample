@@ -367,6 +367,7 @@
 				DEVELOPMENT_TEAM = QP8Z378EKD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Support Files/Info.plist";
+				INFOPLIST_KEY_NSNearbyInteractionAllowOnceUsageDescription = "Allow nearby once";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "Allow nearby interactions";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -398,6 +399,7 @@
 				DEVELOPMENT_TEAM = QP8Z378EKD;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Support Files/Info.plist";
+				INFOPLIST_KEY_NSNearbyInteractionAllowOnceUsageDescription = "Allow nearby once";
 				INFOPLIST_KEY_NSNearbyInteractionUsageDescription = "Allow nearby interactions";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;

@@ -14,7 +14,7 @@ extension PeerConnectionManager: MCSessionDelegate {
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
         switch state {
         case .connected:
-            Logger.log(tag: .nearby, message: ".connected")
+            Logger.log(tag: .nearby, message: ".connected to remote peer: \(peerID.displayName)")
             connectedRemotePeerID = peerID
             connectionStatus = state
         case .notConnected:
@@ -75,10 +75,9 @@ extension PeerConnectionManager: MCNearbyServiceBrowserDelegate {
         
         guard let identityValue = info?[Constants.identity],
                 let peerSession = peerSession else { return }
-        Logger.log(tag: .nearby, message: "browser.foundPeer.identifyValue: \(identityValue) - identityString: \(identityString)")
+        Logger.log(tag: .nearby, message: "browser:foundPeer: identityValue: \(identityValue) - identityString: \(identityString)")
 
         if identityValue == identityString {
-            Logger.log(tag: .nearby, message: "Inviting peer with identityString: \(identityString) ")
             browser.invitePeer(peerID, to: peerSession, withContext: nil, timeout: 10)
         }
     }
