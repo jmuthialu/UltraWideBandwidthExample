@@ -32,25 +32,13 @@ class RangingVC: UIViewController {
             guard let self = self else { return }
             self.updateStartStopUI(isConnected: isConnected)
             self.updatePeerUI()
-            isConnected ? nil: self.updateDistanceUI(nearbyObject: nil)
+            isConnected ? nil: self.updateNearbyUI(for: nil)
         }.store(in: &cancellables)
         
         nearbyService.$nearbyObject.sink { [weak self] nearbyObject in
-            self?.updateDistanceUI(nearbyObject: nearbyObject)
-            self?.animateDirection(nearbyObject: nearbyObject)
+            self?.updateNearbyUI(for: nearbyObject)
         }.store(in: &cancellables)
         
-    }
-    
-    func animateDirection(nearbyObject: NINearbyObject?) {
-        guard let direction = nearbyObject?.direction else { return }
-        let azimuth = asin(direction.x)
-        let elevation = atan2(direction.z, direction.y) + .pi / 2
-        Logger.log(tag: .nearby, message: "azimuth: \(azimuth) - elevation: \(elevation)")
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.directionImageView.transform = CGAffineTransform(rotationAngle: CGFloat(azimuth ))
-        }
     }
     
     func startNearbyService() {
@@ -61,7 +49,7 @@ class RangingVC: UIViewController {
     func stopNearbyService() {
         nearbyService.stop()
         updatePeerUI()
-        updateDistanceUI(nearbyObject: nil)
+        updateNearbyUI(for: nil)
     }
 
     
@@ -76,16 +64,29 @@ class RangingVC: UIViewController {
         }
     }
     
-    func updateDistanceUI(nearbyObject: NINearbyObject?) {
+    func updateNearbyUI(for nearbyObject: NINearbyObject?) {
         DispatchQueue.main.async { [weak self] in
+            // Update distance
             if let distance = nearbyObject?.distance {
                 Logger.log(tag: .nearby, message: "nearbyObject distance: \(distance)")
                 self?.distanceLabel.text = String(distance)
             } else {
                 self?.distanceLabel.text = ""
             }
+            
+            // update azimuth, elevation
+            guard let direction = nearbyObject?.direction else {
+                self?.directionImageView.transform = .identity
+                return
+            }
+            let azimuth = asin(direction.x)
+            let elevation = atan2(direction.z, direction.y) + .pi / 2
+            Logger.log(tag: .nearby, message: "azimuth: \(azimuth) - elevation: \(elevation)")
+            self?.directionImageView.transform = CGAffineTransform(rotationAngle: CGFloat(azimuth ))
+            
         }
     }
+        
     
     func updateStartStopUI(isConnected: Bool?) {
         guard let isConnected = isConnected else { return }
