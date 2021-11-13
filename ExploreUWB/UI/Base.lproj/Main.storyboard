@@ -62,6 +62,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="directionImageView" destination="cJW-Lf-Pb3" id="n86-FN-Kms"/>
                         <outlet property="distanceLabel" destination="rv0-io-bOO" id="xKV-YO-uBX"/>
                         <outlet property="peerLabel" destination="4NM-i2-cWU" id="hM7-aF-yMx"/>
                         <outlet property="startStopButton" destination="Rcj-6j-9aI" id="Khl-xz-VVA"/>

@@ -15,6 +15,7 @@ class RangingVC: UIViewController {
     @IBOutlet weak var peerLabel: UILabel!
     @IBOutlet weak var startStopButton: UIBarButtonItem!
     @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var directionImageView: UIImageView!
     
     var nearbyService = NearbyService.shared
     var cancellables = Set<AnyCancellable>()
@@ -28,14 +29,28 @@ class RangingVC: UIViewController {
     func bindPublishers() {
         
         nearbyService.$isConnected.sink { [weak self] isConnected in
-            self?.updateStartStopUI(isConnected: isConnected)
-            self?.updatePeerUI()
+            guard let self = self else { return }
+            self.updateStartStopUI(isConnected: isConnected)
+            self.updatePeerUI()
+            isConnected ? nil: self.updateDistanceUI(nearbyObject: nil)
         }.store(in: &cancellables)
         
-        nearbyService.$distance.sink { [weak self] distance in
-            self?.updateDistanceUI(distance: distance)
+        nearbyService.$nearbyObject.sink { [weak self] nearbyObject in
+            self?.updateDistanceUI(nearbyObject: nearbyObject)
+            self?.animateDirection(nearbyObject: nearbyObject)
         }.store(in: &cancellables)
         
+    }
+    
+    func animateDirection(nearbyObject: NINearbyObject?) {
+        guard let direction = nearbyObject?.direction else { return }
+        let azimuth = asin(direction.x)
+        let elevation = atan2(direction.z, direction.y) + .pi / 2
+        Logger.log(tag: .nearby, message: "azimuth: \(azimuth) - elevation: \(elevation)")
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.directionImageView.transform = CGAffineTransform(rotationAngle: CGFloat(azimuth ))
+        }
     }
     
     func startNearbyService() {
@@ -45,7 +60,10 @@ class RangingVC: UIViewController {
     
     func stopNearbyService() {
         nearbyService.stop()
+        updatePeerUI()
+        updateDistanceUI(nearbyObject: nil)
     }
+
     
     func updatePeerUI() {
         DispatchQueue.main.async { [weak self] in
@@ -58,9 +76,10 @@ class RangingVC: UIViewController {
         }
     }
     
-    func updateDistanceUI(distance: Float?) {
+    func updateDistanceUI(nearbyObject: NINearbyObject?) {
         DispatchQueue.main.async { [weak self] in
-            if let distance = distance {
+            if let distance = nearbyObject?.distance {
+                Logger.log(tag: .nearby, message: "nearbyObject distance: \(distance)")
                 self?.distanceLabel.text = String(distance)
             } else {
                 self?.distanceLabel.text = ""
