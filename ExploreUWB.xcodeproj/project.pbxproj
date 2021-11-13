@@ -37,7 +37,6 @@
 		B886DD1D273F260A0095FEF7 /* PeerConnectionManager+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PeerConnectionManager+Delegates.swift"; sourceTree = "<group>"; };
 		B886DD1F273F29590095FEF7 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		B886DD21273F2E0B0095FEF7 /* NearbyService+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NearbyService+Delegates.swift"; sourceTree = "<group>"; };
-		B886DD23273F309D0095FEF7 /* ExploreUWB.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ExploreUWB.entitlements; sourceTree = "<group>"; };
 		B886DD25273F309D0095FEF7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		B886DD28274015440095FEF7 /* NIDiscoveryToken+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NIDiscoveryToken+Extensions.swift"; sourceTree = "<group>"; };
 		B886DD2A27401C1E0095FEF7 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
@@ -76,7 +75,6 @@
 		B886DD01273F17B70095FEF7 /* ExploreUWB */ = {
 			isa = PBXGroup;
 			children = (
-				B886DD23273F309D0095FEF7 /* ExploreUWB.entitlements */,
 				B886DD19273F20350095FEF7 /* UI */,
 				B886DD18273F202F0095FEF7 /* Service */,
 				B886DD272740152C0095FEF7 /* Extensions */,
