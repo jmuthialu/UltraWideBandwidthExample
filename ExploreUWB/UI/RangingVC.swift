@@ -12,6 +12,7 @@ import Combine
 
 class RangingVC: UIViewController {
 
+    @IBOutlet weak var peerLabel: UILabel!
     @IBOutlet weak var startStopButton: UIBarButtonItem!
     @IBOutlet weak var distanceLabel: UILabel!
     
@@ -28,6 +29,7 @@ class RangingVC: UIViewController {
         
         nearbyService.$isConnected.sink { [weak self] isConnected in
             self?.updateStartStopUI(isConnected: isConnected)
+            self?.updatePeerUI()
         }.store(in: &cancellables)
         
         nearbyService.$distance.sink { [weak self] distance in
@@ -43,6 +45,17 @@ class RangingVC: UIViewController {
     
     func stopNearbyService() {
         nearbyService.stop()
+    }
+    
+    func updatePeerUI() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.peerLabel.text = ""
+            let remotePeerID = self.nearbyService.peerConnectionManager?.connectedRemotePeerID
+            if let displayName = remotePeerID?.displayName, self.nearbyService.isConnected {
+                self.peerLabel.text = displayName
+            }
+        }
     }
     
     func updateDistanceUI(distance: Float?) {

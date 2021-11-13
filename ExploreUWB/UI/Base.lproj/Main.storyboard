@@ -17,6 +17,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4NM-i2-cWU">
+                                <rect key="frame" x="20" y="342.5" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Direction" translatesAutoresizingMaskIntoConstraints="NO" id="cJW-Lf-Pb3">
                                 <rect key="frame" x="169.5" y="410.5" width="75" height="75"/>
                                 <constraints>
@@ -25,7 +31,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-io-bOO">
-                                <rect key="frame" x="20" y="530.5" width="374" height="18"/>
+                                <rect key="frame" x="20" y="535.5" width="374" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -36,10 +42,14 @@
                         <constraints>
                             <constraint firstItem="rv0-io-bOO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4dl-G2-6By"/>
                             <constraint firstItem="cJW-Lf-Pb3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5aa-vI-xBe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="4NM-i2-cWU" secondAttribute="trailing" constant="20" id="Afk-b1-7Zb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rv0-io-bOO" secondAttribute="trailing" constant="20" id="HXu-72-LKl"/>
                             <constraint firstItem="rv0-io-bOO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="RrY-Cq-sJi"/>
                             <constraint firstItem="cJW-Lf-Pb3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UGT-cU-Oof"/>
-                            <constraint firstItem="rv0-io-bOO" firstAttribute="top" secondItem="cJW-Lf-Pb3" secondAttribute="bottom" constant="45" id="hik-Db-hOM"/>
+                            <constraint firstItem="rv0-io-bOO" firstAttribute="top" secondItem="cJW-Lf-Pb3" secondAttribute="bottom" constant="50" id="hik-Db-hOM"/>
+                            <constraint firstItem="4NM-i2-cWU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mEI-w8-UVG"/>
+                            <constraint firstItem="cJW-Lf-Pb3" firstAttribute="top" secondItem="4NM-i2-cWU" secondAttribute="bottom" constant="50" id="nXB-aF-5bf"/>
+                            <constraint firstItem="4NM-i2-cWU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="q7Q-a9-5Qn"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -53,6 +63,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="distanceLabel" destination="rv0-io-bOO" id="xKV-YO-uBX"/>
+                        <outlet property="peerLabel" destination="4NM-i2-cWU" id="hM7-aF-yMx"/>
                         <outlet property="startStopButton" destination="Rcj-6j-9aI" id="Khl-xz-VVA"/>
                     </connections>
                 </viewController>
