@@ -21,6 +21,7 @@
 		B886DD26273F309D0095FEF7 /* NetworkExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B886DD25273F309D0095FEF7 /* NetworkExtension.framework */; };
 		B886DD29274015440095FEF7 /* NIDiscoveryToken+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886DD28274015440095FEF7 /* NIDiscoveryToken+Extensions.swift */; };
 		B886DD2B27401C1E0095FEF7 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886DD2A27401C1E0095FEF7 /* Data+Extensions.swift */; };
+		B886DD2D274064E90095FEF7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B886DD2C274064E90095FEF7 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		B886DD25273F309D0095FEF7 /* NetworkExtension.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetworkExtension.framework; path = System/Library/Frameworks/NetworkExtension.framework; sourceTree = SDKROOT; };
 		B886DD28274015440095FEF7 /* NIDiscoveryToken+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NIDiscoveryToken+Extensions.swift"; sourceTree = "<group>"; };
 		B886DD2A27401C1E0095FEF7 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		B886DD2C274064E90095FEF7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +59,7 @@
 		B886DCF6273F17B70095FEF7 = {
 			isa = PBXGroup;
 			children = (
+				B886DD2C274064E90095FEF7 /* README.md */,
 				B886DD01273F17B70095FEF7 /* ExploreUWB */,
 				B886DD1A273F20430095FEF7 /* Support Files */,
 				B886DD00273F17B70095FEF7 /* Products */,
@@ -192,6 +195,7 @@
 			files = (
 				B886DD0F273F17B80095FEF7 /* LaunchScreen.storyboard in Resources */,
 				B886DD0C273F17B80095FEF7 /* Assets.xcassets in Resources */,
+				B886DD2D274064E90095FEF7 /* README.md in Resources */,
 				B886DD0A273F17B70095FEF7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
