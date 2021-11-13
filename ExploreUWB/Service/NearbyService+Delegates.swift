@@ -12,7 +12,10 @@ extension NearbyService: NISessionDelegate {
     
     // Called whenever remote peer has any updates in terms of distance
     func session(_ session: NISession, didUpdate nearbyObjects: [NINearbyObject]) {
-        Logger.log(tag: .nearby, message: "didUpdate nearbyObjects: \(String(describing: nearbyObjects.first?.distance))")
+        guard let nearbyObject = nearbyObjects.first else { return }
+
+        Logger.log(tag: .nearby, message: "didUpdate nearbyObjects: \(String(describing: nearbyObject.distance))")
+        distance = nearbyObject.distance
     }
     
     func session(_ session: NISession, didRemove nearbyObjects: [NINearbyObject], reason: NINearbyObject.RemovalReason) {

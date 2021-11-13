@@ -17,9 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZfR-Cn-GJ3">
-                                <rect key="frame" x="186" y="437.5" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Direction" translatesAutoresizingMaskIntoConstraints="NO" id="cJW-Lf-Pb3">
+                                <rect key="frame" x="169.5" y="410.5" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="75" id="DR8-6r-jix"/>
+                                    <constraint firstAttribute="height" constant="75" id="fQh-HC-j7x"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rv0-io-bOO">
+                                <rect key="frame" x="20" y="530.5" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -27,8 +34,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZfR-Cn-GJ3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Bz5-6I-IDh"/>
-                            <constraint firstItem="ZfR-Cn-GJ3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ZYo-yl-0h9"/>
+                            <constraint firstItem="rv0-io-bOO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4dl-G2-6By"/>
+                            <constraint firstItem="cJW-Lf-Pb3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5aa-vI-xBe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rv0-io-bOO" secondAttribute="trailing" constant="20" id="HXu-72-LKl"/>
+                            <constraint firstItem="rv0-io-bOO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="RrY-Cq-sJi"/>
+                            <constraint firstItem="cJW-Lf-Pb3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="UGT-cU-Oof"/>
+                            <constraint firstItem="rv0-io-bOO" firstAttribute="top" secondItem="cJW-Lf-Pb3" secondAttribute="bottom" constant="45" id="hik-Db-hOM"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -41,6 +52,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="distanceLabel" destination="rv0-io-bOO" id="xKV-YO-uBX"/>
                         <outlet property="startStopButton" destination="Rcj-6j-9aI" id="Khl-xz-VVA"/>
                     </connections>
                 </viewController>
@@ -68,6 +80,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Direction" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

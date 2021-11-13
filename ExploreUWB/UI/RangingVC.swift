@@ -13,38 +13,57 @@ import Combine
 class RangingVC: UIViewController {
 
     @IBOutlet weak var startStopButton: UIBarButtonItem!
+    @IBOutlet weak var distanceLabel: UILabel!
     
     var nearbyService = NearbyService.shared
     var cancellables = Set<AnyCancellable>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI(isConnected: nearbyService.isConnected)
+        updateStartStopUI(isConnected: nearbyService.isConnected)
         bindPublishers()
     }
     
     func bindPublishers() {
+        
         nearbyService.$isConnected.sink { [weak self] isConnected in
-            self?.updateUI(isConnected: isConnected)
+            self?.updateStartStopUI(isConnected: isConnected)
+        }.store(in: &cancellables)
+        
+        nearbyService.$distance.sink { [weak self] distance in
+            self?.updateDistanceUI(distance: distance)
         }.store(in: &cancellables)
         
     }
     
     func startNearbyService() {
         nearbyService.start()
-        updateUI(isConnected: true)
+        updateStartStopUI(isConnected: true)
     }
     
     func stopNearbyService() {
         nearbyService.stop()
     }
     
-    func updateUI(isConnected: Bool?) {
+    func updateDistanceUI(distance: Float?) {
+        DispatchQueue.main.async { [weak self] in
+            if let distance = distance {
+                self?.distanceLabel.text = String(distance)
+            } else {
+                self?.distanceLabel.text = ""
+            }
+        }
+    }
+    
+    func updateStartStopUI(isConnected: Bool?) {
         guard let isConnected = isConnected else { return }
-        if isConnected {
-            startStopButton.title = "Stop"
-        } else {
-            startStopButton.title = "Start"
+        
+        DispatchQueue.main.async { [weak self] in
+            if isConnected {
+                self?.startStopButton.title = "Stop"
+            } else {
+                self?.startStopButton.title = "Start"
+            }
         }
     }
     

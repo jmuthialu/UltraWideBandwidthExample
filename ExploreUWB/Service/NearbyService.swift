@@ -19,6 +19,7 @@ class NearbyService: NSObject {
     var peerConnectionManager: PeerConnectionManager?
     
     @Published var isConnected = false
+    @Published var distance: Float?
     var cancellables = Set<AnyCancellable>()
     
     struct Constants {
