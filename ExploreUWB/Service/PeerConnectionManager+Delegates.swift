@@ -54,9 +54,9 @@ extension PeerConnectionManager: MCNearbyServiceAdvertiserDelegate {
  
     /// called after receiving invitation from remote peer.
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser,
-                             didReceiveInvitationFromPeer peerID: MCPeerID,
-                             withContext context: Data?,
-                             invitationHandler: @escaping (Bool, MCSession?) -> Void) {
+                    didReceiveInvitationFromPeer peerID: MCPeerID,
+                    withContext context: Data?,
+                    invitationHandler: @escaping (Bool, MCSession?) -> Void) {
         
         Logger.log(tag: .nearby, message: "advertiser.didReceiveInvitationFromPeer: \(peerID)")
         
@@ -71,12 +71,16 @@ extension PeerConnectionManager: MCNearbyServiceAdvertiserDelegate {
 extension PeerConnectionManager: MCNearbyServiceBrowserDelegate {
     
     // Found a nearby advertising peer. Send invite to that peer.
-    func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String: String]?) {
+    func browser(_ browser: MCNearbyServiceBrowser,
+                 foundPeer peerID: MCPeerID,
+                 withDiscoveryInfo info: [String: String]?) {
         
         guard let identityValue = info?[Constants.identity],
                 let peerSession = peerSession else { return }
         Logger.log(tag: .nearby, message: "browser:foundPeer: identityValue: \(identityValue) - identityString: \(identityString)")
 
+        // In this example we are checking if both peers have same IdentitString but better approach would be
+        // to check for ServiceID rather than ID String.
         if identityValue == self.identityString {
             browser.invitePeer(peerID, to: peerSession, withContext: nil, timeout: 10)
         }

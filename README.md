@@ -7,6 +7,6 @@ Peer refers to remote device;  Device refers to current device
 - Peer will send invitation and this will be received by advertiser delegate
 - current device accepts invite
 - Status changed to .connected
-- Device sends token to peer
+- Device sends token to peer. Peers talk to each other using an agreed upon network technology, MultiPeerConnectivity.
 - Peer sends its token to device
 - Gets updates about direction and distance from peer and vice versa.

@@ -49,8 +49,8 @@ class PeerConnectionManager: NSObject {
         
         // create multi connect session
         peerSession = MCSession(peer: localPeerID,
-                            securityIdentity: nil,
-                            encryptionPreference: .required)
+                                securityIdentity: nil,
+                                encryptionPreference: .required)
         
         // create advertiser
         let discoveryInfo = [Constants.identity: identityString]
